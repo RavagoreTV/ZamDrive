@@ -1,0 +1,38 @@
+﻿@page
+@model ZamkDb.Pages.Account.User_BookingsModel
+@{
+}
+
+<html>
+<body style="background-color: rgba(244, 217, 107, 255);">
+</body>
+</html>
+
+<h3 style ="color:cornflowerblue">  User bookings</h3>
+<div>
+	<dl class="row">
+		<dt class="col-sm-2"> @Html.DisplayNameFor(model => model.Participant.Name) </dt>
+		<dd class="col-sm-10"> @Html.DisplayFor(model => model.Participant.Name) </dd>
+
+		<dt class="col-sm-2"> @Html.DisplayNameFor(model => model.Participant.Bookings) </dt>
+               
+		<dd class="col-sm-10">
+			<table class="table">
+				<tr>
+					<th>Course Id</th>
+					<th>Start Location</th>
+				</tr>
+				@foreach (var item in Model.Participant.Bookings)
+				{
+					<tr>
+						<td> @Html.DisplayFor(modelItem => item.Course.CourseId)</td>
+						<td>  @Html.DisplayFor(modelItem => item.Course.StartLocation)</td>
+					</tr>
+				}
+			</table>
+			<p>Do want to enroll in another course? Please Click here:
+				<a asp-page="/Courses/GetAllCourses" asp-route-uid="@Model.Participant.DriverId">New booking</a>
+			</p>
+		</dd>
+	</dl>
+</div>

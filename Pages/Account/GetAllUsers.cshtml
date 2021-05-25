@@ -1,0 +1,66 @@
+﻿@page
+@using Microsoft.AspNet.Identity
+@using ZamkDb.Models
+@model ZamkDb.Pages.Account.GetAllUsersModel
+@{
+}
+
+<html>
+<body style="background-color: rgba(244, 217, 107, 255);">
+</body>
+</html>
+
+
+@if (Model.Users.Count() != 0)
+{
+    
+	foreach (var user in Model.Users)
+	{
+	    @if (User.Identity.GetUserId() == user.Id )
+	    {
+	        <div class="card mb-3">
+                <div class="card-header">
+                    User Id : @user.Id
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"> Email: </h5>
+                    <p class="card-text">@user.Email </p>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"> Name: </h5>
+                    <p class="card-text">@user.Name </p>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"> Address: </h5>
+                    <p class="card-text">@user.Address </p>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Is a driver? </h5>
+                    <p class="card-text">@user.canBeDriver </p>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-dark" asp-page="/Account/User_Bookings" asp-route-uid="@user.Id">My Bookings</a>
+                    <a class="btn btn-dark" asp-page="/Account/ManageYourAccount" asp-route-uid="@user.Id">Manage Account </a>
+                </div>
+
+            </div>
+	    }
+        
+	}
+}
+else
+{
+	<div class="card">
+		<div class="card-header">
+			No users created yet
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">
+				Use the button below to create a user
+			</h5>
+			<a class="btn btn-dark" style="width:auto" asp-page="Accounts/Registration">
+				Create User
+			</a>
+		</div>
+	</div>
+}

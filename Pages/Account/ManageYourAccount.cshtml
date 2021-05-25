@@ -1,0 +1,59 @@
+﻿@page
+@model ZamkDb.Pages.Account.ManageYourAccountModel
+@using Microsoft.AspNet.Identity
+@{
+    var id = User.Identity.GetUserId();
+    Model.Participant.Id = id;
+}
+
+<html>
+<body style="background-color: rgba(244, 217, 107, 255);">
+</body>
+</html>
+
+<h1>Registration of the user</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="  ModelOnly  " class="text-danger">
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Participant.Name" class="control-label" ></label>
+                <input asp-for="@Model.Participant.Name" class="form-control" />
+                <span asp-validation-for="@Model.Participant.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Participant.Address" class="control-label"></label>
+                <input asp-for="@Model.Participant.Address" class="form-control" />
+                <span asp-validation-for="@Model.Participant.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Participant.Email" class="control-label"></label>
+                <input asp-for="@Model.Participant.Email" class="form-control" />
+                <span asp-validation-for="@Model.Participant.Email" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="@Model.Participant.canBeDriver" class="control-label"></label>
+                <input asp-for="@Model.Participant.canBeDriver" class="form-control" />
+                <span asp-validation-for="@Model.Participant.canBeDriver" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label hidden="hidden" asp-for="@Model.Participant.Id" class="control-label"></label>
+                <input hidden="hidden" asp-for="@Model.Participant.Id" class="form-control" />
+                <span asp-validation-for="@Model.Participant.Id" class="text-danger"></span>
+                
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-dark">Update</button>
+                    <a asp-page="/Account/GetAllUsers" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>

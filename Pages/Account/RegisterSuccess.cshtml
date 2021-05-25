@@ -1,0 +1,43 @@
+﻿@page
+@using Microsoft.AspNet.Identity
+@model ZamkDb.Pages.Account.RegisterSuccessModel
+@{
+}
+
+<html>
+<body style="background-color: rgba(244, 217, 107, 255);">
+</body>
+
+</html>
+
+
+<h2 align="center">Welcome </h2>
+<h3 align="center">You have successfully been registered to ZamKørsel. </h3>
+
+<h5 align="center">Down below there are two options.</h5>
+
+
+
+<div class="row">
+
+    <div class="col-sm">
+        <div class="card" style="width: 20rem;">
+            <img class="card-img-top" src="~/img/car3.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"> If you are registered as a driver, click this link down below, to create a new course</h5>
+                <p></p>
+                <a asp-page="/Courses/Create" class="btn btn-dark">Create Course</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-sm">
+        <div class="card" style="width: 20rem;">
+            <img class="card-img-top" src="~/img/hiking.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Not a driver? Click This link down below if you want to book a course</h5>
+                <a asp-page="/Courses/GetAllCourses" class="btn btn-dark">Find a Course</a>
+            </div>
+        </div>
+    </div>
+</div>

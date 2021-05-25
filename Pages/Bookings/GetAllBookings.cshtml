@@ -1,0 +1,49 @@
+﻿@page
+@using Microsoft.AspNet.Identity
+@model ZamkDb.Pages.Bookings.GetAllBookingsModel
+@{
+}
+
+<html>
+<body style="background-color: rgba(244, 217, 107, 255);">
+</body>
+</html>
+
+
+<h3 style="color:cornflowerblue">My bookings</h3>
+
+<div class="container">
+	<div class="row">
+		@foreach (var p in Model.Bookings)
+		{
+			@if (User.Identity.GetUserId() == p.ParticipantId)
+			{
+
+
+				<div class="col-sm">
+					<div class="card" style="width: 20rem;">
+						<img class="card-img-top" src="~/img/Booking.png" alt="Card image cap" >
+						<div class="card-body">
+							<h5 class="card-title">Zealand Location: @p.Course.ZealandLocation</h5>
+							<p class="card-text">Your name: @p.Participant.Name</p>
+							<p class="card-text">Driver name: @p.Course.User.Name</p>
+							<p class="card-text">Start location: @p.Course.StartLocation</p>
+							<p class="card-text">End location: @p.Course.EndLocation</p>
+                            <p class="card-text">Date: @p.Course.StartDateTime</p>
+                            <p class="card-text">Chosen Pickup Point: @p.ChosenPickUpPoint</p>
+							@if (User.Identity.GetUserId() == p.ParticipantId)
+							{
+								<a asp-page="Delete" asp-route-id="@p.BookingId" class="btn btn-danger m-1">Cancel your booking</a>
+							}
+							
+							
+
+							@*<a asp-page="/Courses/Registration" asp-route-cid="@p.CourseId" class="btn btn-primary">Show courses</a>*@
+						</div>
+					</div>
+					<br />
+				</div>
+			}
+		}
+	</div>
+</div>

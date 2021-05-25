@@ -1,0 +1,51 @@
+﻿@page
+@model ZamkDb.Pages.Courses.GetAllCoursesModel
+@using Microsoft.AspNet.Identity
+@using Microsoft.EntityFrameworkCore
+@{
+    //var id = User.Identity.GetUserId();
+    //Model.Course.UserId = id;
+}
+
+<html>
+<body style="background-color: rgba(244, 217, 107, 255);">
+</body>
+</html>
+<h4 style="		color: cornflowerblue"> List of Courses</h4>
+<form>
+    <p>
+        Search: <input type="text" asp-for="FilterCriteria" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<div class="container">
+    <div class="row">
+        @foreach (var p in Model.Courses)
+        {
+            @if (User.Identity.GetUserId() != p.UserId)
+            {
+              @if(Model.Booking.CourseId < p.AvailableSeats)
+              {
+                <div class="col-sm">
+                    <div class="card" style="width: 20rem;">
+                        <img class="card-img-top" src="~/img/GoogleMaps.png" alt="Card image cap" >
+                        <div class="card-body">
+                            <h5 class="card-title">Zealand Location: @p.ZealandLocation</h5>
+                            <p class="card-text">Startpoint: @p.StartLocation</p>
+                            <p class="card-text">Endpoint: @p.EndLocation</p>
+                            <p class="card-text">Start time: @p.StartDateTime</p>
+                            <p class="card-text">ETA: @p.EndDateTime</p>
+	                        <p class="card-text">Available Seats: @p.AvailableSeats</p>
+	                        @*<p class="card-text">Driver: @Model.Course.User.Name</p>*@
+                            <a asp-page="/Courses/Detail" asp-route-id="@p.CourseId" class="btn btn-dark">More information</a>
+                            <a asp-page="/Bookings/Create" asp-route-tid="@p.CourseId" class="btn btn-dark">Book </a>
+
+                        </div>
+                    </div>
+                    <br />
+                    </div>
+            } 
+            }
+        }
+    </div>
+</div>

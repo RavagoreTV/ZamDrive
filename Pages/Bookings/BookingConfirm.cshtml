@@ -1,0 +1,45 @@
+﻿@page
+@using Microsoft.AspNet.Identity
+@model ZamkDb.Pages.Bookings.BookingConfirmModel
+@{
+    var id = User.Identity.GetUserId();
+    Model.Booking.ParticipantId = id;
+}
+
+<html>
+<body style="background-color: rgba(244, 217, 107, 255);">
+</body>
+</html>
+
+
+
+<h1>Course booking confirmation</h1>
+<form method="post">
+    <div class="form-group">
+        <label hidden="hidden" asp-for="Booking.CourseId"></label>
+        <input hidden="hidden" asp-for="@Model.Booking.CourseId" class="form-control" />
+        <span asp-validation-for="Booking.CourseId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label hidden="hidden" asp-for="Booking.ParticipantId"></label>
+        <input hidden="hidden" asp-for="@Model.Booking.ParticipantId" class="form-control" />
+        <span asp-validation-for="@Model.Booking.ParticipantId" class="text-danger"></span>
+    </div>
+
+    <div class="alert alert-dark">
+        <h5>Are you sure you want to book this course? - @Model.Booking.CourseId</h5>
+		
+        <h3>Your pickup destination:</h3>
+        <div class="form-group">
+            <label  asp-for="Booking.ChosenPickUpPoint"></label>
+            <input asp-for="@Model.Booking.ChosenPickUpPoint" class="form-control" readonly="readonly"/>
+            <span asp-validation-for="@Model.Booking.ChosenPickUpPoint" class="text-danger"></span>
+        </div>
+		
+
+        <button type="submit" class="btn btn-dark">Yes</button>
+        <a class="btn btn-danger" asp-page="/Courses/GetAllCourses">No</a>
+
+    </div>
+</form>

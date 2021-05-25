@@ -1,0 +1,51 @@
+﻿@page
+@model ZamkDb.Pages.Courses.DetailModel
+@{ }
+
+<html>
+<body style="background-color: rgba(244, 217, 107, 255);">
+</body>
+</html>
+
+<h1>Information</h1>
+
+<div class="nav-item">
+    @if (@Model.Course.ZealandLocation == "Roskilde")
+    {
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2252.350154230231!2d12.076499716155201!3d55.63072240886812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46525fe6169f296b%3A0x22ceaf8b52f6eeea!2sZealand%20-%20Sj%C3%A6llands%20Erhvervsakademi!5e0!3m2!1sda!2sdk!4v1620807497487!5m2!1sda!2sdk" width="600" height="450" style="border: 0;" allowfullscreen="" loading="lazy"></iframe> }
+            else if (@Model.Course.ZealandLocation == "Holbæk")
+            {
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d561.9023595217728!2d11.724153296355917!3d55.71316031142009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46527d13325ab7fb%3A0xa1e4018e76fd7f9!2sHUSC%20-%20Parkering!5e0!3m2!1sda!2sdk!4v1621421548533!5m2!1sda!2sdk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> }
+            else if (@Model.Course.ZealandLocation == "Slagelse")
+            {
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2265.3958913082297!2d11.335536716166253!3d55.403445280461256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464d6167384f3dbf%3A0xfdf78eb32d2d1126!2sZealand%20-%20Sj%C3%A6llands%20Erhvervsakademi!5e0!3m2!1sda!2sdk!4v1621422518193!5m2!1sda!2sdk%22" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> }
+            else if (@Model.Course.ZealandLocation == "Køge")
+            {
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2260.530811501802!2d12.154890816392758!3d55.488275019829246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4652f16a5d0a5239%3A0x69819e25f931e415!2sZealand%20-%20Sj%C3%A6llands%20Erhvervsakademi!5e0!3m2!1sda!2sdk!4v1621422553698!5m2!1sda!2sdk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> }
+            else if (@Model.Course.ZealandLocation == "Nykøbing F.")
+            {
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2301.870642807123!2d11.876674316378166!3d54.76466107522918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ad305a7a8ea549%3A0x887b2bc5ec354e6c!2sZealand%20-%20Sj%C3%A6llands%20Erhvervsakademi!5e0!3m2!1sda!2sdk!4v1621422578603!5m2!1sda!2sdk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> }
+            else if (@Model.Course.ZealandLocation == "Næstved")
+            {
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2275.6351907160542!2d11.754604016387434!3d55.22462434006951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4652be6b8aff0387%3A0x44d9c5fe64fb2df9!2sZealand%20-%20Sj%C3%A6llands%20Erhvervsakademi!5e0!3m2!1sda!2sdk!4v1621422657105!5m2!1sda!2sdk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>}
+
+    <h5>Driver: @Model.Course.UserId</h5>
+    <h5>Zealand Location: @Model.Course.ZealandLocation </h5>
+    <h5>Startpoint: @Model.Course.StartLocation </h5>
+    <h5>Endpoint: @Model.Course.EndLocation </h5>
+    <h5>Pickup points:</h5>
+    <p>1: @Model.Course.PickUpPoint1</p>
+    <p>2: @Model.Course.PickUpPoint2</p>
+    <p>3: @Model.Course.PickUpPoint3</p>
+    <h5>Available seats: @Model.Course.AvailableSeats</h5>
+
+
+
+    <form method="post">
+        @*<button type="submit" class="btn btn-primary">Book this course</button>*@
+        <a class="btn btn-dark" asp-page="/Courses/MyCourses">Go back</a>
+        <p>
+            <a class="btn btn-dark" asp-page="/Bookings/Create" asp-route-tid="@Model.Course.CourseId">Book </a>
+        </p>
+    </form>
+</div>

@@ -1,0 +1,51 @@
+﻿@page
+@using Microsoft.AspNet.Identity
+@model ZamkDb.Pages.Courses.MyCoursesModel
+@{
+}
+
+<html>
+<body style="background-color: rgba(244, 217, 107, 255);">
+</body>
+</html>
+
+<p>
+    <a class="btn btn-dark" asp-page="/Courses/Create">Create New Course</a>
+</p>
+
+
+<h4 style="color:cornflowerblue"> List of my Courses</h4>
+<form>
+    <p>
+        Search: <input type="text" asp-for="FilterCriteria" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<div class="container">
+    <div class="row">
+        @foreach (var p in Model.Courses)
+        {
+            @if (User.Identity.GetUserId() == p.UserId)
+            {
+
+
+                <div class="col-sm">
+                    <div class="card" style="width: 15rem;">
+                        <img class="card-img-top" src="~/img/GoogleMaps.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Zealand Location: @p.ZealandLocation</h5>
+                            <a asp-page="/Courses/Detail" asp-route-id="@p.CourseId" class="btn btn-dark">More information</a>
+                            @if (User.Identity.GetUserId() == p.UserId)
+                            {
+                                <a asp-page="Delete" asp-route-id="@p.CourseId" class="btn btn-danger m-1">Delete</a>
+                                <a asp-page="Edit" asp-route-id="@p.CourseId" class="btn btn-dark m-1">Edit</a>
+
+                            }
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            }
+        }
+    </div>
+</div>
